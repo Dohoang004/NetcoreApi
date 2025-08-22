@@ -15,5 +15,12 @@ namespace mymvc.Controllers
 
             return View();
         }
+        [HttpPost]
+        public IActionResult employee2(string email, string name)
+        {
+            ViewBag.emailandname = email + "-" + name;
+            return View();
+        }
+        
     }
 }
