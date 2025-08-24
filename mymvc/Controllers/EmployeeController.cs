@@ -18,7 +18,7 @@ namespace mymvc.Controllers
         [HttpPost]
         public IActionResult employee2(string email, string name)
         {
-            ViewBag.emailandname = email + "-" + name;
+            ViewBag.emailandname = email + " - " + name;
             return View();
         }
         

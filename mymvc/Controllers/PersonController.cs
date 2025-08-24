@@ -2,6 +2,7 @@ namespace mymvc.Controllers
 {
 
     using Microsoft.AspNetCore.Mvc;
+    using mymvc.Models;
 
     public class PersonController : Controller
     {
@@ -13,6 +14,12 @@ namespace mymvc.Controllers
         public IActionResult person2()
         {
 
+            return View();
+        }
+        [HttpPost]
+        public IActionResult person(Person ps)
+        {
+            ViewBag.myps = ps.PersonId + " - " + ps.FirstName + " - " + ps.Address;
             return View();
         }
     }

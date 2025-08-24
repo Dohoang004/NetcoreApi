@@ -1,2 +1,23 @@
 <h1>HOANG</h1>
 <h3>hello it's me</h3>
+<form asp-action="person">
+    <div class="mb-3 mt-3">
+      <label for="email">Person ID:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter text 1" name="PersonID">
+    </div>
+    <div class="mb-3">
+      <label for="pwd">Name:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter text 2" name="Firstname">
+    </div>
+    <div class="mb-3">
+      <label for="pwd">Address:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter text 3" name="Address">
+    </div>
+    <div class="form-check mb-3">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" name="remember"> Remember me
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <h1>Result: @ViewBag.myps</h1>
