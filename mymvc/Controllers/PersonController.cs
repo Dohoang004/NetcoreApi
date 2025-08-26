@@ -36,7 +36,7 @@ namespace mymvc.Controllers
         }*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonId,FullName,Address")] Person person)//tên file cshtml trong view
+        public async Task<IActionResult> Create([Bind("PersonId,FullName,Address,Country")] Person person)//tên file cshtml trong view
         {
             if (ModelState.IsValid)
             {
@@ -46,9 +46,13 @@ namespace mymvc.Controllers
             }
             return View(person);
         }
+        
+                                            // Edit
+
         public async Task<IActionResult> Edit(string id)//tên file cshtml trong view
         {
-            if (id == null || _context.Person == null) {
+            if (id == null || _context.Person == null)
+            {
                 return NotFound();
             }
             var person = await _context.Person.FindAsync(id);
@@ -60,7 +64,7 @@ namespace mymvc.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("PersonId,FullName,Address")] Person person)//tên file cshtml trong view
+        public async Task<IActionResult> Edit(string id, [Bind("PersonId,FullName,Address,Country")] Person person)//tên file cshtml trong view
         {
             if (id != person.PersonId)
             {
@@ -89,13 +93,15 @@ namespace mymvc.Controllers
             }
             return View(person);
         }
+        
+                                    // Delete
         public async Task<IActionResult> Delete(string id)//tên file cshtml trong view
         {
             if (id == null || _context.Person == null)
             {
                 return NotFound();
             }
-            var person = await _context.Person.FirstOrDefaultAsync(m=>m.PersonId == id);
+            var person = await _context.Person.FirstOrDefaultAsync(m => m.PersonId == id);
             if (person == null)
             {
                 return NotFound();

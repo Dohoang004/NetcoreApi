@@ -6,17 +6,30 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <div class="mypagebutton"></div>
+    <div style="display: flex; justify-content:center;text-align:center;margin:0 8px">
+        
     
-    <a asp-controller="Person" asp-action="person">person</a><br>
-    <div class="mypagebutton"></div>
-    <a asp-controller="Person" asp-action="person2">person2</a><br>
-    <div class="mypagebutton"></div>
-    <a asp-controller="Employee" asp-action="employee">employee</a><br>
-    <div class="mypagebutton"></div>
-    <a asp-controller="Employee" asp-action="employee2">employee2</a>
-    <div class="mypagebutton"></div>
-    <a asp-controller="Person" asp-action="index">index</a>
-    
+        <div style="margin: 0 8px;">
+        <a asp-controller="Person" asp-action="person">person </a><br>
+
+        </div>
+        <div style="margin: 0 8px;">
+        <a asp-controller="Person" asp-action="person2">person2</a><br>
+        <div class="mypagebutton"></div>
+
+        </div>
+        <div style="margin: 0 8px;">
+        <a asp-controller="Employee" asp-action="employee">employee</a><br>
+        <div class="mypagebutton"></div>
+
+        </div>
+        <div style="margin: 0 8px;">
+        <a asp-controller="Employee" asp-action="employee2">employee2</a>
+        <div class="mypagebutton"></div>
+
+        </div>
+        <a style="margin: 0 8px;" asp-controller="Person" asp-action="index">index</a>
+    </div>
     
 
 </div>
