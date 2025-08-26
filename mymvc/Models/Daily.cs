@@ -11,5 +11,5 @@ public class DaiLy
 
         // Khóa ngoại đến HeThongPhanPhoi
         public string MaHTPP { get; set; }
-        public Hethongphanphoi Hethongphanphoi { get; set; }  // Navigation property
+        public Hethongphanphoi Htpp { get; set; }  // Navigation property
     }

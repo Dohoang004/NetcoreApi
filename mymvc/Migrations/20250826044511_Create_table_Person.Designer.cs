@@ -10,8 +10,8 @@ using mymvc.Data;
 namespace mymvc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250824145620_create_new_table")]
-    partial class create_new_table
+    [Migration("20250826044511_Create_table_Person")]
+    partial class Create_table_Person
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,13 +28,13 @@ namespace mymvc.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("PersonId");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Person11");
                 });
 #pragma warning restore 612, 618
         }

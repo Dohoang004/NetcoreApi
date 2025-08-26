@@ -25,13 +25,13 @@ namespace mymvc.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("PersonId");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Person11");
                 });
 #pragma warning restore 612, 618
         }

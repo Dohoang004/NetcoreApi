@@ -2,6 +2,7 @@ namespace mymvc.Controllers
 {
 
     using Microsoft.AspNetCore.Mvc;
+    using mymvc.Models;
 
     public class EmployeeController : Controller
     {
@@ -16,9 +17,10 @@ namespace mymvc.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult employee2(string email, string name)
+
+        public IActionResult employee2(string email, Employee ep)
         {
-            ViewBag.emailandname = email + " - " + name;
+            ViewBag.emailandname = email + " - " + ep.FullName+" - "+ep.Address;
             return View();
         }
         

@@ -5,22 +5,22 @@
 namespace mymvc.Migrations
 {
     /// <inheritdoc />
-    public partial class create_new_table : Migration
+    public partial class Create_table_Person : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Persons",
+                name: "Person11",
                 columns: table => new
                 {
                     PersonId = table.Column<string>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
+                    FullName = table.Column<string>(type: "TEXT", nullable: false),
                     Address = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Persons", x => x.PersonId);
+                    table.PrimaryKey("PK_Person11", x => x.PersonId);
                 });
         }
 
@@ -28,7 +28,7 @@ namespace mymvc.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Persons");
+                name: "Person11");
         }
     }
 }
