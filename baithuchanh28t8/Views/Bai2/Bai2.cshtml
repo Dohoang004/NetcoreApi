@@ -1,0 +1,48 @@
+@model baithuchanh28t8.Models.Bai2
+
+@{
+    ViewBag.Title = "baith";
+}
+
+<h2>Bài số 2</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Số thứ nhất:</label>
+        @Html.TextBoxFor(m => m.so1)
+    </div>
+
+    <div>
+        <label>Số thứ hai:</label>
+        @Html.TextBoxFor(m => m.so2)
+    </div>
+
+    <div>
+        <label>Phép toán:</label>
+        @Html.DropDownListFor(m => m.pheptinh, new SelectList(new[]
+        {
+            new { Value = "cộng", Text = "Tổng (+)" },
+        new { Value = "trừ", Text = "Hiệu (-)" },
+        new { Value = "nhân", Text = "Tích (*)" },
+        new { Value = "chia", Text = "Thương (/)" }
+        }, "Value", "Text"), "Chọn phép toán")
+</div>
+
+<div>
+    <input type="submit" value="Tính" />
+</div>
+
+@if (Model.ketqua != null)
+    {
+        <div>
+            <strong>Kết quả:</strong> @Model.ketqua
+        </div>
+    }
+    else if (Model.pheptinh == "Divide" && Model.so2 == 0)
+    {
+        <div style="color:red;">
+            Không thể chia cho 0.
+        </div>
+    }
+}

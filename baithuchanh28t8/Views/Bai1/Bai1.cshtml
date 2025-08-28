@@ -1,0 +1,19 @@
+<form asp-action="Bai1">
+    <div class="mb-3 mt-3">
+        <label class="form-label">Nhap ho ten:</label>
+        <input type="text" class="form-control" placeholder="Enter name" name="name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nhap nam sinh:</label>
+        <input type="number" class="form-control" placeholder="Enter birth" name="birth">
+    </div>
+    <div class="form-check mb-3">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="remember"> Remember me
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<h1>@ViewBag.bai1</h1>

@@ -6,5 +6,6 @@ namespace mymvc.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<Person> Person { get; set;}
+        public DbSet<mymvc.Models.Employee> Employee { get; set; } = default!;
     }
 }

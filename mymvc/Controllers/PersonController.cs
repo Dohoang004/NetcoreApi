@@ -24,16 +24,6 @@ namespace mymvc.Controllers
         {
             return View();
         }
-        /*public IActionResult person()
-        {
-            return View();
-        }
-
-        public IActionResult person2()
-        {
-
-            return View();
-        }*/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PersonId,FullName,Address,Country")] Person person)//tên file cshtml trong view
@@ -128,6 +118,22 @@ namespace mymvc.Controllers
         {
             return ( _context.Person?.Any(e => e.PersonId == id)).GetValueOrDefault();
         }
+    }
+}
+        /*public IActionResult person()
+        {
+            return View();
+        }
+
+        public IActionResult person2()
+        {
+
+            return View();
+        }*/
+
+
+
+
         /*
         public IActionResult person(Person ps)
         {
@@ -135,5 +141,12 @@ namespace mymvc.Controllers
             return View();
         }
         */
-    }
-}
+
+
+
+
+
+
+
+
+

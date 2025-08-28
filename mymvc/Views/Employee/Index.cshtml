@@ -1,0 +1,63 @@
+@model IEnumerable<mymvc.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+
+    <h2>DO HUU HOANG Home page</h2>
+  <p>The .table-sm class makes the table smaller by cutting cell padding in half:</p>
+  <div style="display: flex;">
+    <a style="margin-right: 5px;" type="button" asp-action="Create" class="btn btn-primary">Create </a>
+    <a type="button" asp-controller="Home" asp-action="Index" class="btn btn-danger">Back home</a>
+  </div>
+  <div class="mypagebutton"></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmployeeId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.PersonId">Edit</a> 
+                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.PersonId">Details</a> 
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.PersonId">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "baithuchanh28t8/1.0.0": {
+        "runtime": {
+          "baithuchanh28t8.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "baithuchanh28t8/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
