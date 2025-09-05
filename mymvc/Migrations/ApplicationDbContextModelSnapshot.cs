@@ -16,6 +16,47 @@ namespace mymvc.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
 
+            modelBuilder.Entity("mymvc.Models.Daily", b =>
+                {
+                    b.Property<string>("MaDaiLy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DiaChi")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DienThoai")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MaHTPP")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NguoiDaiDien")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenDaiLy")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("MaDaiLy");
+
+                    b.HasIndex("MaHTPP");
+
+                    b.ToTable("Daily1");
+                });
+
+            modelBuilder.Entity("mymvc.Models.Hethongphanphoi", b =>
+                {
+                    b.Property<string>("MaHTPP")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenHTPP")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("MaHTPP");
+
+                    b.ToTable("Hethongphanphoi");
+                });
+
             modelBuilder.Entity("mymvc.Models.Person", b =>
                 {
                     b.Property<string>("PersonId")
@@ -61,6 +102,17 @@ namespace mymvc.Migrations
                     b.ToTable("Person11");
 
                     b.HasDiscriminator().HasValue("Employee");
+                });
+
+            modelBuilder.Entity("mymvc.Models.Daily", b =>
+                {
+                    b.HasOne("mymvc.Models.Hethongphanphoi", "Hethongphanphoi")
+                        .WithMany()
+                        .HasForeignKey("MaHTPP")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hethongphanphoi");
                 });
 #pragma warning restore 612, 618
         }

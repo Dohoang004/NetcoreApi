@@ -1,0 +1,34 @@
+@model mymvc.Models.Bai3
+
+@{
+    ViewBag.Title = "Tính chỉ số BMI";
+}
+
+<h2>Tính chỉ số BMI</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Cân nặng (kg):</label>
+        @Html.TextBoxFor(m => m.Weight, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Weight)
+    </div>
+
+    <div>
+        <label>Chiều cao (cm):</label>
+        @Html.TextBoxFor(m => m.Height, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Height)
+    </div>
+
+    <div style="margin-top:10px;">
+        <input type="submit" value="Tính BMI" class="btn btn-primary" />
+    </div>
+
+    @if (Model.BMI != null)
+    {
+        <div style="margin-top:20px;">
+            <strong>Chỉ số BMI:</strong> @Model.BMI.Value.ToString("0.00") <br />
+            <strong>Phân loại:</strong> @Model.Category
+        </div>
+    }
+}
