@@ -18,6 +18,7 @@ namespace mymvc.Controllers
         {
             _context = context;
         }
+        
 
         // GET: Employee
         public async Task<IActionResult> Index()
@@ -59,6 +60,7 @@ namespace mymvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

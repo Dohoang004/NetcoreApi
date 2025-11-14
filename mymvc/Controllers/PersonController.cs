@@ -15,6 +15,27 @@ namespace mymvc.Controllers
         {
             _context = context;
         }
+        private string GenerateNewPersonId()
+{
+    // Lấy mã lớn nhất hiện tại trong DB
+    var lastPerson = _context.Person
+        .OrderByDescending(s => s.PersonId)
+        .FirstOrDefault();
+
+    string newId = "PSN001"; // Mặc định cho bản ghi đầu tiên
+
+    if (lastPerson != null)
+    {
+        // Cắt lấy phần số trong mã, ví dụ STD005 -> 5
+        string lastIdNumber = lastPerson.PersonId.Substring(3);
+        int nextId = int.Parse(lastIdNumber) + 1;
+
+        // Ghép lại mã mới theo định dạng STD00x
+        newId = "PSN" + nextId.ToString("D3"); // D3 = 3 chữ số, thêm 0 phía trước
+    }
+
+    return newId;
+}
         public async Task<IActionResult> Index() //index() : //tên file cshtml trong view
         {
             var model = await _context.Person.ToListAsync();
@@ -22,6 +43,8 @@ namespace mymvc.Controllers
         }
         public IActionResult Create()//tên file cshtml trong view
         {
+            var newId = GenerateNewPersonId();
+    ViewBag.NewPersonId = newId;
             return View();
         }
         [HttpPost]
@@ -30,6 +53,8 @@ namespace mymvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(person.PersonId))
+            person.PersonId = GenerateNewPersonId();
                 _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));//tên file cshtml trong view

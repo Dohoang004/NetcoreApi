@@ -16,34 +16,6 @@ namespace mymvc.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
 
-            modelBuilder.Entity("mymvc.Models.Daily", b =>
-                {
-                    b.Property<string>("MaDaiLy")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DiaChi")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DienThoai")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("MaHTPP")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NguoiDaiDien")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TenDaiLy")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("MaDaiLy");
-
-                    b.HasIndex("MaHTPP");
-
-                    b.ToTable("Daily1");
-                });
-
             modelBuilder.Entity("mymvc.Models.Hethongphanphoi", b =>
                 {
                     b.Property<string>("MaHTPP")
@@ -70,11 +42,6 @@ namespace mymvc.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -83,9 +50,7 @@ namespace mymvc.Migrations
 
                     b.ToTable("Person11");
 
-                    b.HasDiscriminator().HasValue("Person");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("mymvc.Models.Employee", b =>
@@ -99,20 +64,16 @@ namespace mymvc.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.ToTable("Person11");
-
-                    b.HasDiscriminator().HasValue("Employee");
+                    b.ToTable("Employee1");
                 });
 
-            modelBuilder.Entity("mymvc.Models.Daily", b =>
+            modelBuilder.Entity("mymvc.Models.Employee", b =>
                 {
-                    b.HasOne("mymvc.Models.Hethongphanphoi", "Hethongphanphoi")
-                        .WithMany()
-                        .HasForeignKey("MaHTPP")
+                    b.HasOne("mymvc.Models.Person", null)
+                        .WithOne()
+                        .HasForeignKey("mymvc.Models.Employee", "PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Hethongphanphoi");
                 });
 #pragma warning restore 612, 618
         }

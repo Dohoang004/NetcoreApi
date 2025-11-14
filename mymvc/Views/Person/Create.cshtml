@@ -11,7 +11,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="mb-3 mt-3">
                 <label asp-for="PersonId" class="control-label"></label>
-                <input asp-for="PersonId" class="form-control" placeholder="Enter" />
+                <input asp-for="PersonId" class="form-control" value="@ViewBag.NewPersonId" />
                 <span asp-validation-for="PersonId" class="text-danger"></span>
             </div>
             <div class="mb-3">

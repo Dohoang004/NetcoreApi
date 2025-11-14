@@ -8,7 +8,7 @@ namespace mymvc.Data
         public DbSet<Person> Person { get; set;}
         public DbSet<Employee> Employee { get; set;}
         public DbSet<Hethongphanphoi> Hethongphanphoi { get; set;}
-        public DbSet<mymvc.Models.Daily> Daily { get; set; } = default!;
+        //public DbSet<mymvc.Models.Daily> Daily { get; set; } = default!;
         
     }
 }

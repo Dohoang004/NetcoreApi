@@ -12,7 +12,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="mb-3 mt-3">
                 <label asp-for="EmployeeId" class="control-label"></label>
-                <input asp-for="EmployeeId" class="form-control" />
+                <input asp-for="EmployeeId" value="@ViewBag.NewEmployeeId" class="form-control" />
                 <span asp-validation-for="EmployeeId" class="text-danger"></span>
             </div>
             
@@ -24,8 +24,8 @@
 
             <div class="mb-3">
                 <label asp-for="PersonId" class="control-label"></label>
-                <input asp-for="PersonId" class="form-control" />
-                <span asp-validation-for="PersonId" class="text-danger"></span>
+                <input asp-for="PersonId" class="form-control"  value="@ViewBag.NewId" />
+                <span asp-validation-for="PersonId"  class="text-danger"></span>
             </div>
 
             <div class="mb-3">
