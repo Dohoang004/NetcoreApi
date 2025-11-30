@@ -7,6 +7,7 @@ namespace mymvc.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using mymvc.Models;
+    using mymvc.Models.Process;
     using X.PagedList;
     using X.PagedList.Extensions;
 
@@ -14,31 +15,77 @@ namespace mymvc.Controllers
     public class PersonController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private ExcelProcess _excelProcess=new ExcelProcess();
         public PersonController(ApplicationDbContext context)
         {
             _context = context;
         }
+        
+
+        //gencode
         private string GenerateNewPersonId()
-{
-    // Lấy mã lớn nhất hiện tại trong DB
-    var lastPerson = _context.Person
-        .OrderByDescending(s => s.PersonId)
-        .FirstOrDefault();
+        {
+            // Lấy mã lớn nhất hiện tại trong DB
+            var lastPerson = _context.Person
+                .OrderByDescending(s => s.PersonId)
+                .FirstOrDefault();
 
-    string newId = "PSN001"; // Mặc định cho bản ghi đầu tiên
+            string newId = "PSN001"; // Mặc định cho bản ghi đầu tiên
 
-    if (lastPerson != null)
-    {
-        // Cắt lấy phần số trong mã, ví dụ STD005 -> 5
-        string lastIdNumber = lastPerson.PersonId.Substring(3);
-        int nextId = int.Parse(lastIdNumber) + 1;
+            if (lastPerson != null)
+            {
+                // Cắt lấy phần số trong mã, ví dụ STD005 -> 5
+                string lastIdNumber = lastPerson.PersonId.Substring(3);
+                int nextId = int.Parse(lastIdNumber) + 1;
 
-        // Ghép lại mã mới theo định dạng STD00x
-        newId = "PSN" + nextId.ToString("D3"); // D3 = 3 chữ số, thêm 0 phía trước
-    }
+                // Ghép lại mã mới theo định dạng STD00x
+                newId = "PSN" + nextId.ToString("D3"); // D3 = 3 chữ số, thêm 0 phía trước
+            }
 
-    return newId;
-}
+            return newId;
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file != null)
+            {
+                string fileExtension=Path.GetExtension(file.FileName);
+                if (fileExtension != ".xls" && fileExtension != ".xlsx")
+                {
+                    ModelState.AddModelError("", "Choose a file");
+                }
+                else
+                {
+                    var fileName=DateTime.Now.ToShortTimeString()+fileExtension;
+                    var filePath=Path.Combine(Directory.GetCurrentDirectory()+"/Uploads/",fileName);
+                    var fileLocation=new FileInfo(filePath).ToString();
+                    using (var stream=new FileStream(filePath, FileMode.Create))
+                    {
+                        //save file to server
+                        await file.CopyToAsync(stream);
+                        //
+                        var dt=_excelProcess.ExcelToDataTable(fileLocation);
+                        //
+                        for(int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            //
+                            var ps=new Person();
+                            //
+                            ps.PersonId=dt.Rows[i][0].ToString();
+                            ps.FullName=dt.Rows[i][1].ToString();
+                            ps.Address=dt.Rows[i][2].ToString();
+                            //
+                            _context.AddAsync(ps);
+                        }
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            return View();
+        }
+
         public async Task<IActionResult> Index(int? page) //index() : //tên file cshtml trong view
         {
             var model =  _context.Person.ToList().ToPagedList(page ?? 1, 5);
@@ -52,7 +99,7 @@ namespace mymvc.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonId,FullName,Address,Country")] Person person)//tên file cshtml trong view
+        public async Task<IActionResult> Create([Bind("PersonId,FullName,Address")] Person person)//tên file cshtml trong view
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +129,7 @@ namespace mymvc.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("PersonId,FullName,Address,Country")] Person person)//tên file cshtml trong view
+        public async Task<IActionResult> Edit(string id, [Bind("PersonId,FullName,Address")] Person person)//tên file cshtml trong view
         {
             if (id != person.PersonId)
             {

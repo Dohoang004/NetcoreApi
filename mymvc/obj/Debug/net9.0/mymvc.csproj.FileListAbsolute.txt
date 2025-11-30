@@ -302,3 +302,11 @@ D:\Myprojectcs\mymvc\obj\Debug\net9.0\ref\mymvc.dll
 D:\Myprojectcs\mymvc\bin\Debug\net9.0\X.PagedList.dll
 D:\Myprojectcs\mymvc\bin\Debug\net9.0\X.PagedList.Mvc.Core.dll
 D:\Myprojectcs\mymvc\obj\Debug\net9.0\mymvc.MvcApplicationPartsAssemblyInfo.cs
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\EPPlus.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\EPPlus.Interfaces.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\EPPlus.System.Drawing.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\System.Drawing.Common.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
