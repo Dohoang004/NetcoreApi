@@ -7,6 +7,9 @@ namespace mymvc.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using mymvc.Models;
+    using X.PagedList;
+    using X.PagedList.Extensions;
+
 
     public class PersonController : Controller
     {
@@ -36,9 +39,9 @@ namespace mymvc.Controllers
 
     return newId;
 }
-        public async Task<IActionResult> Index() //index() : //tên file cshtml trong view
+        public async Task<IActionResult> Index(int? page) //index() : //tên file cshtml trong view
         {
-            var model = await _context.Person.ToListAsync();
+            var model =  _context.Person.ToList().ToPagedList(page ?? 1, 5);
             return View(model);
         }
         public IActionResult Create()//tên file cshtml trong view

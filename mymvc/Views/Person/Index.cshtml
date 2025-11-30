@@ -1,5 +1,6 @@
 @model IEnumerable<mymvc.Models.Person>
-
+@using X.PagedList
+@using X.PagedList.Mvc.Core
  <div class="container mt-3">
   <h2>DO HUU HOANG Home page</h2>
   <p>The .table-sm class makes the table smaller by cutting cell padding in half:</p>
@@ -34,4 +35,5 @@
     }
     </tbody>
   </table>
+  @Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page = page}), new X.PagedList.Mvc.Core.PagedListRenderOptions { LiElementClasses = new string[] {"page-item"}, PageClasses = new string[] { "page-link" }})
 </div>

@@ -299,3 +299,6 @@ D:\Myprojectcs\mymvc\obj\Debug\net9.0\refint\mymvc.dll
 D:\Myprojectcs\mymvc\obj\Debug\net9.0\mymvc.pdb
 D:\Myprojectcs\mymvc\obj\Debug\net9.0\mymvc.genruntimeconfig.cache
 D:\Myprojectcs\mymvc\obj\Debug\net9.0\ref\mymvc.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\X.PagedList.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\X.PagedList.Mvc.Core.dll
+D:\Myprojectcs\mymvc\obj\Debug\net9.0\mymvc.MvcApplicationPartsAssemblyInfo.cs
