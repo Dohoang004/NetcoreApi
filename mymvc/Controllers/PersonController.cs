@@ -10,6 +10,7 @@ namespace mymvc.Controllers
     using mymvc.Models.Process;
     using X.PagedList;
     using X.PagedList.Extensions;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
 
     public class PersonController : Controller
@@ -86,9 +87,25 @@ namespace mymvc.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Index(int? page) //index() : //tên file cshtml trong view
+         public async Task<IActionResult> Index(int? page, int? PageSize) //index() : //tên file cshtml trong view
         {
-            var model =  _context.Person.ToList().ToPagedList(page ?? 1, 5);
+            // Tạo danh sách các lựa chọn số lượng bản ghi hiển thị
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="3", Text= "3" },
+                new SelectListItem() { Value="5", Text= "5" },
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="15", Text= "15" },
+                new SelectListItem() { Value="25", Text= "25" },
+                new SelectListItem() { Value="50", Text= "50" },
+            };
+
+            // Xác định số lượng bản ghi trên mỗi trang (mặc định là 3 nếu PageSize null
+            int pagesize = (PageSize ?? 3);
+            ViewBag.psize = pagesize;
+
+            // Truy vấn dữ liệu và phân trang
+            var model =  _context.Person.ToList().ToPagedList(page ?? 1,pagesize);
             return View(model);
         }
         public IActionResult Create()//tên file cshtml trong view

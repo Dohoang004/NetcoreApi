@@ -1,37 +1,66 @@
 @model IEnumerable<mymvc.Models.Person>
 @using X.PagedList
 @using X.PagedList.Mvc.Core
+@using Microsoft.AspNetCore.Mvc.Rendering
  <div class="container mt-3">
-  <h2>DO HUU HOANG Home page</h2>
-  <p>The .table-sm class makes the table smaller by cutting cell padding in half:</p>
-  <div style="display: flex;">
-    <a style="margin-right: 5px;" type="button" asp-action="Create" class="btn btn-primary">Create </a>
-    <a type="button" asp-controller="Home" asp-action="Index" class="btn btn-danger">Back home</a>
-  </div>
-  <div class="mypagebutton"></div>
-  <table style="text-align:center;" class="table table-bordered table-sm">
-    <thead>
-      <tr>
-        <th>@Html.DisplayNameFor(model => model.PersonId)</th>
-        <th>@Html.DisplayNameFor(model => model.FullName)</th>
-        <th>@Html.DisplayNameFor(model => model.Address)</th>
-        <th>Options</th>
-      </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-          <td>@Html.DisplayFor(modelItem => item.PersonId)</td>
-          <td>@Html.DisplayFor(modelItem => item.FullName)</td>
-          <td>@Html.DisplayFor(modelItem => item.Address)</td>
-          <td>
-            <a asp-action="Edit" asp-route-id="@item.PersonId" class="btn btn-primary">Edit</a>
-            <a asp-action="Delete" asp-route-id="@item.PersonId" class="btn btn-danger">Delete</a>
-          </td>
-        </tr>
-    }
-    </tbody>
-  </table>
-  @Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page = page}), new X.PagedList.Mvc.Core.PagedListRenderOptions { LiElementClasses = new string[] {"page-item"}, PageClasses = new string[] { "page-link" }})
+    <h2>DO HUU HOANG Home page</h2>
+    <p>The .table-sm class makes the table smaller by cutting cell padding in half:</p>
+    <div style="display: flex;">
+      <a style="margin-right: 5px;" type="button" asp-action="Create" class="btn btn-primary">Create </a>
+      <a type="button" asp-controller="Home" asp-action="Index" class="btn btn-danger">Back home</a>
+    </div>
+    <div class="mypagebutton"></div>
+      <table style="text-align:center;" class="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>@Html.DisplayNameFor(model => model.PersonId)</th>
+            <th>@Html.DisplayNameFor(model => model.FullName)</th>
+            <th>@Html.DisplayNameFor(model => model.Address)</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+              <td>@Html.DisplayFor(modelItem => item.PersonId)</td>
+              <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+              <td>@Html.DisplayFor(modelItem => item.Address)</td>
+              <td>
+                <a asp-action="Edit" asp-route-id="@item.PersonId" class="btn btn-primary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.PersonId" class="btn btn-danger">Delete</a>
+              </td>
+            </tr>
+        }
+        </tbody>
+      </table>
+    @using (Html.BeginForm("Index", "Person", FormMethod.Get, new { id = "form1" }))
+{
+    <div class="row">
+        <div class="col-md-11">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { 
+                page = page, 
+                pageSize = ViewBag.psize 
+            }),
+            new PagedListRenderOptions { 
+                LiElementClasses = new string[] { "page-item" }, 
+                PageClasses = new string[] { "page-link" } 
+            })
+        </div>
+        <div class="col-md-1">
+            @Html.DropDownList("pageSize", null, new { @class = "form-select" })
+        </div>
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Khi giá trị của dropdown pageSize thay đổi
+        $("#pageSize").change(function () {
+            // Tự động submit form1 để tải lại trang với pageSize mới
+            $("#form1").submit();
+        });
+    });
+</script>
 </div>

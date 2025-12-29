@@ -2,9 +2,16 @@ namespace mymvc.Controllers
 {
 
     using Microsoft.AspNetCore.Mvc;
+    using mymvc.Data;
+    using mymvc.Models;
+    using SQLitePCL;
 
     public class cakeController : Controller
     {
+
+        
+
+
         public IActionResult cake()
         {
             return View();
@@ -15,6 +22,7 @@ namespace mymvc.Controllers
             ViewBag.print=myname+" PTPMQL";
             return View();
         }
+       
         public IActionResult Welcome()
         {
             ViewData["Message"] = "Your welcome message";
