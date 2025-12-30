@@ -87,6 +87,7 @@ namespace mymvc.Controllers
             return View();
         }
 
+        
          public async Task<IActionResult> Index(int? page, int? PageSize) //index() : //tên file cshtml trong view
         {
             // Tạo danh sách các lựa chọn số lượng bản ghi hiển thị
