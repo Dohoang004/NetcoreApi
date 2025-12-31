@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using mymvc.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using mymvc.Models.Entities;
 namespace mymvc.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -14,6 +15,8 @@ namespace mymvc.Data
         public DbSet<Person> Person { get; set;}
         public DbSet<Employee> Employee { get; set;}
         public DbSet<Hethongphanphoi> Hethongphanphoi { get; set;}
+        public DbSet<Staff> Staff { get; set;}
+        public DbSet<MemberUnit> MemberUnit { get; set;}
         //public DbSet<mymvc.Models.Daily> Daily { get; set; } = default!;
         
     protected override void OnModelCreating(ModelBuilder builder)

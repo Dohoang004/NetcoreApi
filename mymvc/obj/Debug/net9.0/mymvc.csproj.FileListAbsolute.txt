@@ -397,3 +397,4 @@ D:\Myprojectcs\mymvc\obj\Debug\net9.0\compressed\a6xba7nz3x-mlv21k5csn.gz
 D:\Myprojectcs\mymvc\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
 D:\Myprojectcs\mymvc\bin\Debug\net9.0\MailKit.dll
 D:\Myprojectcs\mymvc\bin\Debug\net9.0\MimeKit.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\Bogus.dll
