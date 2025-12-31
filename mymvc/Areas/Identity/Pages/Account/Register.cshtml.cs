@@ -24,7 +24,6 @@ namespace mymvc.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
@@ -72,14 +71,14 @@ namespace mymvc.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+
+            [Required]
+            [Display(Name = "Full name")]
+            public string FullName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required] 
-            [Display (Name ="Full name")]
-            public string FullName { get; set; }
-            
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]

@@ -394,3 +394,6 @@ D:\Myprojectcs\mymvc\obj\Debug\net9.0\compressed\sa5k7io89x-d6nrnj6jjx.gz
 D:\Myprojectcs\mymvc\obj\Debug\net9.0\compressed\g2ba24ynhb-m9qm4tazc0.gz
 D:\Myprojectcs\mymvc\obj\Debug\net9.0\compressed\g9w65o0vpb-ttgo8qnofa.gz
 D:\Myprojectcs\mymvc\obj\Debug\net9.0\compressed\a6xba7nz3x-mlv21k5csn.gz
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\MailKit.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\MimeKit.dll

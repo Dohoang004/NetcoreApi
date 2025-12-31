@@ -93,7 +93,7 @@ namespace mymvc.Controllers
             // Tạo danh sách các lựa chọn số lượng bản ghi hiển thị
             ViewBag.PageSize = new List<SelectListItem>()
             {
-                new SelectListItem() { Value="3", Text= "3" },
+                
                 new SelectListItem() { Value="5", Text= "5" },
                 new SelectListItem() { Value="10", Text= "10" },
                 new SelectListItem() { Value="15", Text= "15" },
@@ -101,8 +101,8 @@ namespace mymvc.Controllers
                 new SelectListItem() { Value="50", Text= "50" },
             };
 
-            // Xác định số lượng bản ghi trên mỗi trang (mặc định là 3 nếu PageSize null
-            int pagesize = (PageSize ?? 3);
+            // Xác định số lượng bản ghi trên mỗi trang (mặc định là 5 nếu PageSize null
+            int pagesize = (PageSize ?? 5);
             ViewBag.psize = pagesize;
 
             // Truy vấn dữ liệu và phân trang
