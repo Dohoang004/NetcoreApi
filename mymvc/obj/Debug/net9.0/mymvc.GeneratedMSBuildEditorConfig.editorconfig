@@ -296,6 +296,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uXHBlcnNvbjIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Myprojectcs/mymvc/Views/Role/AssignClaim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxBc3NpZ25DbGFpbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Myprojectcs/mymvc/Views/Role/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

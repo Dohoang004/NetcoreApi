@@ -4,6 +4,7 @@ using mymvc.Data;
 using mymvc.Models;
 using mymvc.Models.Process;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
@@ -77,13 +78,25 @@ builder.Services.AddDataProtection()
 
 builder.Services.AddAuthorization(options =>
 {
+    /*
     // Yêu cầu đặc quyền Role có giá trị AdminOnly
     options.AddPolicy("Role", policy => policy.RequireClaim("Role", "AdminOnly"));
     
     // Yêu cầu đặc quyền Role có giá trị MemberOnly
     options.AddPolicy("Permission", policy => policy.RequireClaim("Role", "MemberOnly"));
+    options.AddPolicy("PolicyAdmin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("PolicyMember", policy => policy.RequireRole("Member"));
+    options.AddPolicy("PolicyByPhoneNumber", policy => policy.Requirements.Add(new PolicyByPhoneNumberRequirement()));
+*/
+    // Tự động tạo Policy từ Enum SystemPermissions
+    
+    foreach (var permission in Enum.GetValues(typeof(SystemPermissions)).Cast<SystemPermissions>())
+    {
+        options.AddPolicy(permission.ToString(), policy =>
+            policy.RequireClaim("Permission", permission.ToString()));
+    }
 });
-
+builder.Services.AddSingleton<IAuthorizationHandler, PolicyByPhoneNumberHandler>();
 
 
 builder.Services.AddTransient<MemberUnitSeeder>();
@@ -117,7 +130,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

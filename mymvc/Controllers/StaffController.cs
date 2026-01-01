@@ -9,10 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using mymvc.Data;
 using X.PagedList.Extensions;
 using mymvc.Models;
+using mymvc.Models.Process;
 
 namespace mymvc.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class StaffController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,13 +23,14 @@ namespace mymvc.Controllers
             _context = context;
         }
 
-        
+        [Authorize(Policy =nameof(SystemPermissions.StaffView))]
         public async Task<IActionResult> Index(int? page)
         {
-            var data = _context.Staff.ToList().ToPagedList(page ?? 1,5);
+            var data = _context.Staff.ToList().ToPagedList(page ?? 1,10);
             return View(data);
         }
-        [Authorize(Roles ="Admin,Member")]
+        //[Authorize(Roles ="Admin,Member")]
+        [Authorize(Policy =nameof(SystemPermissions.StaffView))]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,7 +48,8 @@ namespace mymvc.Controllers
             return View(staff);
         }
 
-        [Authorize(Roles ="Admin")]
+       // [Authorize(Roles ="Admin")]
+        [Authorize(Policy =nameof(SystemPermissions.StaffCreate))]
         public IActionResult Create()
         {
             return View();
@@ -68,7 +71,8 @@ namespace mymvc.Controllers
             return View(staff);
         }
 
-       [Authorize(Roles ="Admin")]
+       //[Authorize(Roles ="Admin")]
+        [Authorize(Policy =nameof(SystemPermissions.StaffEdit))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -120,7 +124,8 @@ namespace mymvc.Controllers
             return View(staff);
         }
 
-        [Authorize(Roles ="Admin")]
+       // [Authorize(Roles ="Admin")]
+        [Authorize(Policy =nameof(SystemPermissions.StaffDelete))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

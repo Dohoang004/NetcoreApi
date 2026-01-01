@@ -9,11 +9,12 @@ using mymvc.Data;
 using mymvc.Models;
 using Microsoft.AspNetCore.Authorization;
 using X.PagedList.Extensions;
+using mymvc.Models.Process;
 
 namespace mymvc.Controllers
 {
 
-    [Authorize(Policy ="Permission")]
+    //[Authorize(Policy ="PolicyMember")]
 
     public class MemberUnitController : Controller
     {
@@ -25,12 +26,14 @@ namespace mymvc.Controllers
         }
 
         // GET: MemberUnit
+        [Authorize(Policy =nameof(SystemPermissions.MemberUnitView))]
         public async Task<IActionResult> Index(int? page)
         {
             return View( _context.MemberUnit.ToList().ToPagedList(page ?? 1,10) );
         }
 
         // GET: MemberUnit/Details/5
+        [Authorize(Policy =nameof(SystemPermissions.MemberUnitView))]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,8 +50,9 @@ namespace mymvc.Controllers
 
             return View(memberUnit);
         }
-        [Authorize(Policy ="Role")]
+        //[Authorize(Policy ="PolicyAdmin")]
         // GET: MemberUnit/Create
+        [Authorize(Policy =nameof(SystemPermissions.MemberUnitCreate))]
         public IActionResult Create()
         {
             return View();
@@ -69,8 +73,9 @@ namespace mymvc.Controllers
             }
             return View(memberUnit);
         }
-
+        //[Authorize(Policy ="Role")]
         // GET: MemberUnit/Edit/5
+        [Authorize(Policy =nameof(SystemPermissions.MemberUnitEdit))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -120,8 +125,9 @@ namespace mymvc.Controllers
             }
             return View(memberUnit);
         }
-
+       // [Authorize(Policy ="Role")]
         // GET: MemberUnit/Delete/5
+        [Authorize(Policy =nameof(SystemPermissions.MemberUnitDelete))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

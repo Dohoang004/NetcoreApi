@@ -3,11 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using mymvc.Models;
 using mymvc.Models.ViewModels;
+using mymvc.Models.Process;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 
-namespace VicemMVCIdentity.Controllers
+namespace mymvc.Controllers
 {
+    //[Authorize(Policy = "PolicyByPhoneNumber")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -20,6 +23,7 @@ namespace VicemMVCIdentity.Controllers
         }
 
         // Hiển thị danh sách người dùng kèm vai trò của họ
+        [Authorize(Policy = nameof(SystemPermissions.AccountView))]
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -33,6 +37,7 @@ namespace VicemMVCIdentity.Controllers
             return View(usersWithRoles);
         }
         // Chuẩn bị dữ liệu để gán vai trò
+        [Authorize(Policy = nameof(SystemPermissions.AssignRole))]
         public async Task<IActionResult> AssignRole(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId); //
@@ -83,6 +88,7 @@ namespace VicemMVCIdentity.Controllers
         return View(model);
     }
 
+        [Authorize(Policy = nameof(SystemPermissions.AddClaim))]
     // GET: Hiển thị danh sách Claims hiện tại của người dùng
         public async Task<IActionResult> AddClaim(string userId)
         {

@@ -9,6 +9,7 @@ namespace mymvc.Controllers
     using mymvc.Models;
     using mymvc.Models.Process;
     using X.PagedList;
+    using OfficeOpenXml;
     using X.PagedList.Extensions;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Authorization;
@@ -87,6 +88,28 @@ namespace mymvc.Controllers
                 }
             }
             return View();
+        }
+        public IActionResult Download()
+        {
+            var fileName = "YourFileName" + ".xlsx";
+            using (ExcelPackage excelPackage = new ExcelPackage())
+            {
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Sheet 1");
+                
+                // Thêm tiêu đề cho các cột
+                worksheet.Cells["A1"].Value = "PersonID";
+                worksheet.Cells["B1"].Value = "FullName";
+                worksheet.Cells["C1"].Value = "Address";
+                
+                // Lấy dữ liệu từ Context
+                var personList = _context.Person.ToList();
+                
+                // Đổ dữ liệu vào Worksheet
+                worksheet.Cells["A2"].LoadFromCollection(personList);
+                
+                var stream = new MemoryStream(excelPackage.GetAsByteArray());
+                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+            }
         }
 
         

@@ -5,10 +5,14 @@
 <form asp-controller="Account" asp-action="AddClaim" method="post">
     <div class="row">
         <input type="hidden" name="userId" value="@Model.UserId" />
-        
         <input type="text" id="claimType" name="claimType" class="form-control col" placeholder="Enter Claim Type" />
-        
+        <!--
+        <select class="form-control col" id="claimType" name="claimType" placeholder="Enter Claim Type">
+            <option value="Role">Role</option>
+            <option value="Permission">Permission</option>
+        </select>-->
         <input type="text" id="claimValue" name="claimValue" class="form-control col" placeholder="Enter Claim Value" />
+        
         
         <button type="submit" class="col btn btn-success">Add new Claim</button>
     </div>
