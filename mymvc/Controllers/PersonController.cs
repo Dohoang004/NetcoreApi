@@ -11,8 +11,10 @@ namespace mymvc.Controllers
     using X.PagedList;
     using X.PagedList.Extensions;
     using Microsoft.AspNetCore.Mvc.Rendering;
+    using Microsoft.AspNetCore.Authorization;
 
 
+    [Authorize]
     public class PersonController : Controller
     {
         private readonly ApplicationDbContext _context;

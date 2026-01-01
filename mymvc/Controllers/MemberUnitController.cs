@@ -13,7 +13,7 @@ using X.PagedList.Extensions;
 namespace mymvc.Controllers
 {
 
-    [Authorize]
+    [Authorize(Policy ="Permission")]
 
     public class MemberUnitController : Controller
     {
@@ -47,7 +47,7 @@ namespace mymvc.Controllers
 
             return View(memberUnit);
         }
-
+        [Authorize(Policy ="Role")]
         // GET: MemberUnit/Create
         public IActionResult Create()
         {

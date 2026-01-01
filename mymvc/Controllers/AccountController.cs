@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using mymvc.Models;
 using mymvc.Models.ViewModels;
+using System.Security.Claims;
+
 
 namespace VicemMVCIdentity.Controllers
 {
@@ -80,5 +82,29 @@ namespace VicemMVCIdentity.Controllers
         }
         return View(model);
     }
+
+    // GET: Hiển thị danh sách Claims hiện tại của người dùng
+        public async Task<IActionResult> AddClaim(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            var model = new UserClaimVM(userId, user.UserName, userClaims.ToList());
+            return View(model);
+        }
+
+        // POST: Thêm một Claim mới cho người dùng
+        [HttpPost]
+        public async Task<IActionResult> AddClaim(string userId, string claimType, string claimValue)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var result = await _userManager.AddClaimAsync(user, new Claim(claimType, claimValue));
+            
+            if (result.Succeeded)
+            {
+                return RedirectToAction("AddClaim", new { userId });
+            }
+            
+            return View();
+        }
     }
 }

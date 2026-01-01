@@ -75,7 +75,14 @@ builder.Services.AddDataProtection()
     .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
 
 
-
+builder.Services.AddAuthorization(options =>
+{
+    // Yêu cầu đặc quyền Role có giá trị AdminOnly
+    options.AddPolicy("Role", policy => policy.RequireClaim("Role", "AdminOnly"));
+    
+    // Yêu cầu đặc quyền Role có giá trị MemberOnly
+    options.AddPolicy("Permission", policy => policy.RequireClaim("Role", "MemberOnly"));
+});
 
 
 
