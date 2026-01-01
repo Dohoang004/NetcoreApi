@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mymvc.Data;
+using X.PagedList.Extensions;
 using mymvc.Models;
 
 namespace mymvc.Controllers
@@ -22,11 +23,12 @@ namespace mymvc.Controllers
         }
 
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            return View(await _context.Staff.ToListAsync());
+            var data = _context.Staff.ToList().ToPagedList(page ?? 1,5);
+            return View(data);
         }
-        
+        [Authorize(Roles ="Admin,Member")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,7 +46,7 @@ namespace mymvc.Controllers
             return View(staff);
         }
 
-       
+        [Authorize(Roles ="Admin")]
         public IActionResult Create()
         {
             return View();
@@ -66,7 +68,7 @@ namespace mymvc.Controllers
             return View(staff);
         }
 
-        [AllowAnonymous]
+       [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,7 +87,7 @@ namespace mymvc.Controllers
         // POST: Staff/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [AllowAnonymous]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StaffId,FirstName,LastName,Address,DateOfBirth,Position,Email,HireDate")] Staff staff)
@@ -118,7 +120,7 @@ namespace mymvc.Controllers
             return View(staff);
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,7 +138,7 @@ namespace mymvc.Controllers
             return View(staff);
         }
 
-       
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

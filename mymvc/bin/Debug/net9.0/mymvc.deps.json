@@ -12,6 +12,7 @@
           "EPPlus": "6.2.8",
           "MailKit": "4.14.1",
           "Microsoft.AspNetCore.DataProtection.Extensions": "9.0.0",
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "9.0.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.0",
           "Microsoft.AspNetCore.Identity.UI": "9.0.0",
           "Microsoft.EntityFrameworkCore.Design": "9.0.8",
@@ -686,6 +687,17 @@
         "dependencies": {
           "Microsoft.AspNetCore.DataProtection": "9.0.0",
           "Microsoft.Extensions.DependencyInjection": "9.0.8"
+        }
+      },
+      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/9.0.1": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.8"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": {
+            "assemblyVersion": "9.0.1.0",
+            "fileVersion": "9.0.124.61009"
+          }
         }
       },
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore/9.0.0": {
@@ -2943,6 +2955,13 @@
       "sha512": "sha512-Qh3JwHlI/yzZvgE5Teu5k/7wQGZdeqn2m8Zr3Hv6GqPk7wBjnKHxCQB+Rwdvz/tY9UGRbhQyv+T8ozURz4lORQ==",
       "path": "microsoft.aspnetcore.dataprotection.extensions/9.0.0",
       "hashPath": "microsoft.aspnetcore.dataprotection.extensions.9.0.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1NzXWynvcDYFniAH73zLwnIlnS3NV59sxqJSI/VKIxe5LbsZ+Qwtgu1nSOHYBM5vjk7RfCfYrGrr24Pnk6/i4Q==",
+      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/9.0.1",
+      "hashPath": "microsoft.aspnetcore.diagnostics.entityframeworkcore.9.0.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore/9.0.0": {
       "type": "package",

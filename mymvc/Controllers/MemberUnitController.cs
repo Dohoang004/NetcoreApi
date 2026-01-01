@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mymvc.Data;
-using mymvc.Models.Entities;
+using mymvc.Models;
 using Microsoft.AspNetCore.Authorization;
+using X.PagedList.Extensions;
 
 namespace mymvc.Controllers
 {
@@ -24,9 +25,9 @@ namespace mymvc.Controllers
         }
 
         // GET: MemberUnit
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            return View(await _context.MemberUnit.ToListAsync());
+            return View( _context.MemberUnit.ToList().ToPagedList(page ?? 1,10) );
         }
 
         // GET: MemberUnit/Details/5

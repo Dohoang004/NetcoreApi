@@ -6,6 +6,7 @@ using mymvc.Models.Process;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 // Cấu hình MailSettings từ appsettings.json
@@ -18,7 +19,13 @@ builder.Services.AddTransient<IEmailSender, SendMailService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<ApplicationUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders() // Cần thiết cho Password/Email Reset
+.AddDefaultUI();
+builder.Services.AddRazorPages();
+//
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -52,8 +59,9 @@ builder.Services.ConfigureApplicationCookie(options =>
     // Giam thieu rui ro CSRF
     options.Cookie.SameSite = SameSiteMode.Lax;
     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-    options.LoginPath = "/Identity/Account/Login";
-    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
     options.SlidingExpiration = true;
 });
 
@@ -66,18 +74,30 @@ builder.Services.AddDataProtection()
     // dat thoi gian so cho khoa bao mat du lieu
     .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
 
+
+
+
+
+
+builder.Services.AddTransient<MemberUnitSeeder>();
 //builder.Services.AddTransient<StaffSeeder>();
 var app = builder.Build();
 
 
 
 // Thực hiện Seed dữ liệu khi ứng dụng khởi chạy
-/*
-using (var scope = app.Services.CreateScope())
+
+/*using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var seeder = services.GetRequiredService<MemberUnitSeeder>();
+    seeder.SeedMemberUnits(300);
+}*/
+/*using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var seeder = services.GetRequiredService<StaffSeeder>();
-    seeder.SeedStaffs(1000);
+    seeder.SeedStaffs(300);
 }*/
 
 // Configure the HTTP request pipeline.

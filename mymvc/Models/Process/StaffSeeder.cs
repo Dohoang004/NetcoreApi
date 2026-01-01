@@ -1,4 +1,4 @@
-/*
+
 using Bogus;
 using mymvc.Data;
 
@@ -35,4 +35,4 @@ namespace mymvc.Models.Process
             return faker.Generate(n);
         }
     }
-}*/
+}

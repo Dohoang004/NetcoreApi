@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using mymvc.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using mymvc.Models.Entities;
+using mymvc.Models;
 namespace mymvc.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

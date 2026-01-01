@@ -398,3 +398,4 @@ D:\Myprojectcs\mymvc\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
 D:\Myprojectcs\mymvc\bin\Debug\net9.0\MailKit.dll
 D:\Myprojectcs\mymvc\bin\Debug\net9.0\MimeKit.dll
 D:\Myprojectcs\mymvc\bin\Debug\net9.0\Bogus.dll
+D:\Myprojectcs\mymvc\bin\Debug\net9.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll

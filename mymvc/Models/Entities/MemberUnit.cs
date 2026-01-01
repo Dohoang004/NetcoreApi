@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace mymvc.Models.Entities
+namespace mymvc.Models
 {
     public class MemberUnit
     {

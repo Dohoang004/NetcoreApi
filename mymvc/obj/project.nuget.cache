@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8Vrka8yhcNo=",
+  "dgSpecHash": "mixX4JY/JUU=",
   "success": true,
   "projectFilePath": "D:\\Myprojectcs\\mymvc\\mymvc.csproj",
   "expectedPackageFiles": [
@@ -67,6 +67,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\9.0.0\\microsoft.aspnetcore.dataprotection.9.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\9.0.0\\microsoft.aspnetcore.dataprotection.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.extensions\\9.0.0\\microsoft.aspnetcore.dataprotection.extensions.9.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\9.0.1\\microsoft.aspnetcore.diagnostics.entityframeworkcore.9.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\9.0.0\\microsoft.aspnetcore.identity.entityframeworkcore.9.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.0\\microsoft.aspnetcore.identity.ui.9.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
